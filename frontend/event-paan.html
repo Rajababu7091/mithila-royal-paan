@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Paan Service - Mithila Royal Paan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/chatbot.css?v=2">
+</head>
+<body class="mithila-motif-bg">
+
+    <!-- Header Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-royal sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/index.html">
+                <img id="header-logo-img" src="" alt="" class="me-2" style="height: 30px; display: none;" onload="this.style.display='inline-block'; document.getElementById('header-logo-icon') ? document.getElementById('header-logo-icon').style.display='none' : null;">
+                <i id="header-logo-icon" class="bi bi-leaf-fill text-warning me-2"></i>
+                <span id="header-site-title">Mithila Royal Paan</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact Us</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="theme-switch-wrapper me-3">
+                        <i class="bi bi-moon-fill text-warning me-2"></i>
+                        <label class="theme-switch" for="theme-toggle-chk">
+                            <input type="checkbox" id="theme-toggle-chk" />
+                            <div class="slider"></div>
+                        </label>
+                        <i class="bi bi-sun-fill text-warning ms-2"></i>
+                    </div>
+                    <a href="/login.html" id="nav-auth-link" class="btn btn-gold"><i class="bi bi-box-arrow-in-right me-1"></i> Login</a>
+                    <span id="nav-register-item">
+                        <a href="/register.html" class="btn btn-outline-gold ms-2">Register</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="py-5 text-center bg-secondary border-bottom border-warning">
+        <div class="container py-2">
+            <h1 class="display-4 text-white royal-font" data-cms-key="event_hero_title">Custom Event Catering</h1>
+            <p class="lead text-warning max-w-xl mx-auto" data-cms-key="event_hero_subtitle">Traditional hospitality and customized sweet betel leaf catering setups for cultural, corporate, and private family get-togethers.</p>
+        </div>
+    </section>
+
+    <!-- Booking details & Form -->
+    <section class="py-5">
+        <div class="container">
+            <div id="booking-alert-container" class="max-w-2xl mx-auto"></div>
+
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <h3 class="royal-font text-warning mb-4">Event Counter Details</h3>
+                    <p class="text-light">At Mithila Royal Paan, we specialize in scaling our operations to fit events of all formats. Our event menu includes family-friendly variations, completely free of any narcotics or tobacco.</p>
+                    
+                    <div class="royal-card mb-4">
+                        <h5 class="text-warning royal-font"><i class="bi bi-patch-check me-2"></i>Menu Variations</h5>
+                        <ul class="text-secondary small mt-2">
+                            <li><strong>Sweet Gulkand Paan</strong> (Tutty Fruity, Coconut slices)</li>
+                            <li><strong>Dry Fruit Royal Paan</strong> (Pistachios, cashews, dates, saffron threads)</li>
+                            <li><strong>Dark Chocolate Paan</strong> (Loaded with chips and cream, kids' favorite!)</li>
+                            <li><strong>Live Fire Paan</strong> (Flame setup with aromatic safe clove sprays)</li>
+                        </ul>
+                    </div>
+
+                    <div class="royal-card">
+                        <h5 class="text-warning royal-font"><i class="bi bi-shield-heart me-2"></i>Service Commitment</h5>
+                        <ul class="text-secondary small mt-2">
+                            <li>100% triple-filtered water washed farm-fresh MITHILA PAAN leaves.</li>
+                            <li>Experienced live chefs dressed in traditional Mithila clothing.</li>
+                            <li>Strict compliance with timeframes and cleanliness requirements.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="royal-card">
+                        <h3 class="royal-font text-warning mb-4 text-center">Event Registration Form</h3>
+                        <form id="event-booking-form">
+                            <div class="mb-3">
+                                <label for="book-event-type" class="form-label text-warning small royal-font">Occasion / Event Type</label>
+                                <select class="form-select form-royal-control" id="book-event-type" required>
+                                    <option value="" disabled selected>Select event occasion...</option>
+                                    <option value="Event - Corporate">Corporate Function</option>
+                                    <option value="Event - Cultural Festival">Cultural Festival / Puja</option>
+                                    <option value="Event - Birthday Party">Birthday Party</option>
+                                    <option value="Event - Engagement">Engagement Party</option>
+                                    <option value="Event - Reception">Reception Feast</option>
+                                    <option value="Event - Other">Other Private Party</option>
+                                </select>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-md-6 mb-3">
+                                    <label for="book-date" class="form-label text-warning small royal-font">Date of Event</label>
+                                    <input type="date" class="form-control form-royal-control" id="book-date" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="book-guests" class="form-label text-warning small royal-font">Estimated Guest Count</label>
+                                    <input type="number" class="form-control form-royal-control" id="book-guests" min="20" placeholder="e.g. 150" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="book-location" class="form-label text-warning small royal-font">Event Location & City</label>
+                                <input type="text" class="form-control form-royal-control" id="book-location" placeholder="e.g. Hotel Maurya, Patna" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="book-requirements" class="form-label text-warning small royal-font">Special Directions (Menu options, timings, etc.)</label>
+                                <textarea class="form-control form-royal-control" id="book-requirements" rows="4" placeholder="Indicate if you want specific variations like chocolate-only, live fire display timings, customized backdrop labels, or dietary constraints..."></textarea>
+                            </div>
+
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-gold w-100 btn-lg">Submit Event Booking</button>
+                                <p class="text-center text-secondary small mt-2">Note: Submitting this form does not require initial payments. Our planning executive will contact you within 24 hours.</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-royal">
+        <div class="container text-center text-md-start">
+            <div class="row g-4">
+                <!-- Column 1: Brand -->
+                <div class="col-md-4">
+                    <h5 class="text-warning royal-font"><i class="bi bi-leaf-fill text-warning me-2"></i><span data-cms-key="footer_brand_name">Mithila Royal Paan</span></h5>
+                    <p class="text-secondary small" data-cms-key="footer_about_text">
+                        Connecting global patrons to organic Magahi betel farms in Bihar and providing luxury live wedding counters since 1974.
+                    </p>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="col-md-4 text-md-end">
+                    <h5 class="text-warning royal-font">Quick Links</h5>
+                    <ul class="list-unstyled text-secondary small">
+                        <li><a href="/about.html" class="text-secondary text-decoration-none">About Our Farms</a></li>
+                        <li><a href="/wedding-paan.html" class="text-secondary text-decoration-none">Wedding &amp; Event Catering</a></li>
+                        <li><a href="/products.html" class="text-secondary text-decoration-none">Buy Premium Gift Packs</a></li>
+                        <li><a href="/blog.html" class="text-secondary text-decoration-none">Cultural Blog</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Contact Info -->
+                <div class="col-md-4">
+                    <h5 class="text-warning royal-font">Contact Headquarters</h5>
+                    <p class="text-secondary mt-2 mb-1"><i class="bi bi-geo-alt-fill text-warning me-2"></i><span data-cms-key="contact_address">Madhubani Farms, Darbhanga, Bihar, IN</span></p>
+                    <p class="text-secondary mb-1"><i class="bi bi-envelope-fill text-warning me-2"></i><span data-cms-key="contact_email">support@mithilaroyalpaan.com</span></p>
+                    <p class="text-secondary"><i class="bi bi-telephone-fill text-warning me-2"></i><span data-cms-key="contact_phone">+91 98765 43210</span></p>
+                </div>
+            </div>
+            <hr class="border-warning my-4">
+            <p class="text-secondary text-center m-0" id="footer-copyright">&copy; 2026 Mithila Royal Paan. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+ 
+     <!-- Bootstrap 5 Bundle JS -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="/js/api.js"></script>
+     <script src="/js/auth.js"></script>
+     <script src="/js/main.js"></script>
+     <script src="/js/cms-builder.js"></script>
+    <!-- AI Chatbot Widget -->
+    <script src="/js/chatbot.js?v=2"></script>
+
+    <!-- Pre-select type from URL query -->
+    <script>
+        document.getElementById('book-date').min = new Date().toISOString().split('T')[0];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const type = urlParams.get('type');
+            if (type) {
+                const select = document.getElementById('book-event-type');
+                // Loop options to find matching value
+                for (let i = 0; i < select.options.length; i++) {
+                    if (select.options[i].value.includes(type)) {
+                        select.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+        });
+
+        document.getElementById('event-booking-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Check auth
+            if (!Auth.isLoggedIn()) {
+                localStorage.setItem('redirect_after_login', window.location.pathname + window.location.search);
+                window.location.href = '/login.html?login_required=true';
+                return;
+            }
+
+            const req = {
+                eventType: document.getElementById('book-event-type').value,
+                eventDate: document.getElementById('book-date').value,
+                location: document.getElementById('book-location').value,
+                guestCount: parseInt(document.getElementById('book-guests').value),
+                specialRequirements: document.getElementById('book-requirements').value
+            };
+
+            API.post('/bookings', req)
+                .then(data => {
+                    window.location.href = '/dashboard.html?booking_success=true';
+                })
+                .catch(err => {
+                    showGlobalAlert(err.message || 'Event booking failed.', 'danger', 'booking-alert-container');
+                });
+        });
+    </script>
+</body>
+</html>

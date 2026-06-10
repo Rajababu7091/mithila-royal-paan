@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Mithila Royal Paan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/chatbot.css?v=2">
+</head>
+<body class="mithila-motif-bg">
+
+    <!-- Header Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-royal sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/index.html">
+                <img id="header-logo-img" src="" alt="" class="me-2" style="height: 30px; display: none;" onload="this.style.display='inline-block'; document.getElementById('header-logo-icon') ? document.getElementById('header-logo-icon').style.display='none' : null;">
+                <i id="header-logo-icon" class="bi bi-leaf-fill text-warning me-2"></i>
+                <span id="header-site-title">Mithila Royal Paan</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact Us</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="theme-switch-wrapper me-3">
+                        <i class="bi bi-moon-fill text-warning me-2"></i>
+                        <label class="theme-switch" for="theme-toggle-chk">
+                            <input type="checkbox" id="theme-toggle-chk" />
+                            <div class="slider"></div>
+                        </label>
+                        <i class="bi bi-sun-fill text-warning ms-2"></i>
+                    </div>
+                    <a href="/login.html" id="nav-auth-link" class="btn btn-gold"><i class="bi bi-box-arrow-in-right me-1"></i> Login</a>
+                    <span id="nav-register-item">
+                        <a href="/register.html" class="btn btn-outline-gold ms-2">Register</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="py-5 text-center bg-secondary border-bottom border-warning">
+        <div class="container py-3">
+            <h1 class="display-4 text-white royal-font" data-cms-key="services_hero_title">Premium Live Catering Services</h1>
+            <p class="lead text-warning max-w-xl mx-auto" data-cms-key="services_hero_subtitle">Luxury live setup counters with traditional Mithila designs and customized flavors for all your special occasions.</p>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4" id="services-page-container">
+                <div class="col-12 text-center py-4 text-secondary">Loading services list...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-royal">
+        <div class="container text-center text-md-start">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h5 class="text-warning royal-font"><i class="bi bi-leaf-fill text-warning me-2"></i>Mithila Royal Paan</h5>
+                    <p class="text-secondary" id="footer-about-text">Connecting global patrons to organic Magahi betel farms in Bihar and providing luxury live wedding counters since 1974.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5 class="text-warning royal-font">Contact</h5>
+                    <p class="text-secondary m-0">support@mithilaroyalpaan.com | +91 70614 05543</p>
+                </div>
+            </div>
+            <hr class="border-warning my-4">
+            <p class="text-secondary text-center m-0" id="footer-copyright">&copy; 2026 Mithila Royal Paan. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/cms-builder.js"></script>
+    <!-- AI Chatbot Widget -->
+    <script src="/js/chatbot.js?v=2"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/api/v1/services')
+                .then(res => res.json())
+                .then(list => {
+                    if (list.length > 0) {
+                        const container = document.getElementById('services-page-container');
+                        container.innerHTML = '';
+                        list.forEach(item => {
+                            const featuresList = item.features ? item.features.split(',').map(f => `<li><i class="bi bi-check2 text-warning me-2"></i>${f.trim()}</li>`).join('') : '';
+                            const col = document.createElement('div');
+                            col.className = 'col-md-6 col-lg-4';
+                            col.innerHTML = `
+                                <div class="royal-card h-100 d-flex flex-column justify-content-between">
+                                    <div>
+                                        <img src="${item.imageUrl || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80'}" class="img-fluid rounded mb-3 royal-border" style="max-height: 180px; width: 100%; object-fit: cover;">
+                                        <h3 class="royal-font text-white">${item.name}</h3>
+                                        <p class="text-secondary">${item.description}</p>
+                                        ${featuresList ? `<ul class="list-unstyled text-secondary small mt-3">${featuresList}</ul>` : ''}
+                                    </div>
+                                    <div class="mt-4">
+                                        <span class="text-warning fw-bold d-block mb-3">Starting at INR ${item.price}</span>
+                                        <a href="/wedding-paan.html" class="btn btn-gold w-100">Book Now</a>
+                                    </div>
+                                </div>
+                            `;
+                            container.appendChild(col);
+                        });
+                    }
+                })
+                .catch(err => console.log("Failed to load services:", err));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Mithila Royal Paan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="mithila-motif-bg d-flex align-items-center justify-content-center min-vh-100 py-5">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                
+                <!-- Logo -->
+                <div class="text-center mb-4">
+                    <a href="/index.html" class="text-decoration-none">
+                        <h1 class="royal-font text-warning display-5 m-0"><i class="bi bi-leaf-fill text-warning me-2"></i>Mithila Royal Paan</h1>
+                    </a>
+                </div>
+
+                <div class="royal-card">
+                    <h3 class="royal-font text-white text-center mb-4">Create Account</h3>
+                    
+                    <div id="register-alert-container"></div>
+
+                    <form id="register-form">
+                        <div class="mb-3">
+                            <label for="reg-name" class="form-label text-warning small royal-font">Your Full Name</label>
+                            <div class="input-group">
+                                <span class="input-group-text form-royal-control border-end-0"><i class="bi bi-person text-warning"></i></span>
+                                <input type="text" class="form-control form-royal-control border-start-0" id="reg-name" placeholder="e.g. Raja Babu" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="reg-email" class="form-label text-warning small royal-font">Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text form-royal-control border-end-0"><i class="bi bi-envelope text-warning"></i></span>
+                                <input type="email" class="form-control form-royal-control border-start-0" id="reg-email" placeholder="e.g. raja@gmail.com" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="reg-phone" class="form-label text-warning small royal-font">Mobile Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text form-royal-control border-end-0"><i class="bi bi-telephone text-warning"></i></span>
+                                <input type="text" class="form-control form-royal-control border-start-0" id="reg-phone" placeholder="e.g. 9876543210" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="reg-password" class="form-label text-warning small royal-font">Password (Min 6 characters)</label>
+                            <div class="input-group">
+                                <span class="input-group-text form-royal-control border-end-0"><i class="bi bi-lock text-warning"></i></span>
+                                <input type="password" class="form-control form-royal-control border-start-0" id="reg-password" placeholder="Create a strong password" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-gold w-100 btn-lg mt-3">Register Account</button>
+                    </form>
+
+                    <p class="text-center text-secondary mt-4 mb-0 small">
+                        Already have an account? <a href="/login.html" class="text-warning text-decoration-none royal-font">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/main.js"></script>
+
+    <!-- Page Register Logic -->
+    <script>
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const phone = document.getElementById('reg-phone').value;
+            const password = document.getElementById('reg-password').value;
+
+            if (password.length < 6) {
+                showGlobalAlert('Password must be at least 6 characters long.', 'danger', 'register-alert-container');
+                return;
+            }
+
+            Auth.register(name, email, password, phone)
+                .then(data => {
+                    // Redirect to login with positive state
+                    window.location.href = '/login.html?registered=true';
+                })
+                .catch(err => {
+                    showGlobalAlert(err.message || 'Registration failed. Email might already be in use.', 'danger', 'register-alert-container');
+                });
+        });
+
+        // Show registration warning if already registered
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('registered')) {
+                showGlobalAlert('Your account has been created! Please login to continue.', 'success', 'register-alert-container');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Mithila Royal Paan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/chatbot.css?v=2">
+</head>
+<body class="mithila-motif-bg">
+
+    <!-- Header Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-royal sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/index.html">
+                <img id="header-logo-img" src="" alt="" class="me-2" style="height: 30px; display: none;" onload="this.style.display='inline-block'; document.getElementById('header-logo-icon') ? document.getElementById('header-logo-icon').style.display='none' : null;">
+                <i id="header-logo-icon" class="bi bi-leaf-fill text-warning me-2"></i>
+                <span id="header-site-title">Mithila Royal Paan</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact Us</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="theme-switch-wrapper me-3">
+                        <i class="bi bi-moon-fill text-warning me-2"></i>
+                        <label class="theme-switch" for="theme-toggle-chk">
+                            <input type="checkbox" id="theme-toggle-chk" />
+                            <div class="slider"></div>
+                        </label>
+                        <i class="bi bi-sun-fill text-warning ms-2"></i>
+                    </div>
+                    <a href="/login.html" id="nav-auth-link" class="btn btn-gold"><i class="bi bi-box-arrow-in-right me-1"></i> Login</a>
+                    <span id="nav-register-item">
+                        <a href="/register.html" class="btn btn-outline-gold ms-2">Register</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="py-5 text-center bg-secondary border-bottom border-warning">
+        <div class="container py-2">
+            <h1 class="display-4 text-white royal-font" data-cms-key="gallery_hero_title">Premium Service Gallery</h1>
+            <p class="lead text-warning max-w-xl mx-auto" data-cms-key="gallery_hero_subtitle">Explore high-resolution media showcasing our betel leaf farming, assorted products, and wedding decoration designs.</p>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Filter Tabs -->
+            <div class="d-flex flex-wrap gap-2 justify-content-center mb-5" id="gallery-tabs">
+                <button class="btn btn-gold tab-btn active" data-category="all">All Showcase</button>
+                <button class="btn btn-outline-gold tab-btn" data-category="Wedding">Wedding Counters</button>
+                <button class="btn btn-outline-gold tab-btn" data-category="Farming">Harvesting Farms</button>
+                <button class="btn btn-outline-gold tab-btn" data-category="Events">Festivals & Events</button>
+                <button class="btn btn-outline-gold tab-btn" data-category="Products">Luxury Products</button>
+            </div>
+
+            <!-- Media Grid -->
+            <div class="row g-4" id="gallery-grid">
+                <!-- Media loaded via API -->
+                <div class="text-center py-5">
+                    <div class="spinner-border text-warning" role="status">
+                        <span class="visually-hidden">Loading images...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-royal">
+        <div class="container text-center text-md-start">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h5 class="text-warning royal-font"><i class="bi bi-leaf-fill text-warning me-2"></i>Mithila Royal Paan</h5>
+                    <p class="text-secondary" id="footer-about-text">Connecting global patrons to organic Magahi betel farms in Bihar and providing luxury live wedding counters since 1974.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5 class="text-warning royal-font">Contact</h5>
+                    <p class="text-secondary m-0">support@mithilaroyalpaan.com | +91 70614 05543</p>
+                </div>
+            </div>
+            <hr class="border-warning my-4">
+            <p class="text-secondary text-center m-0" id="footer-copyright">&copy; 2026 Mithila Royal Paan. All Rights Reserved.</p>
+        </div>
+     </footer>
+ 
+     <!-- Bootstrap 5 Bundle JS -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="/js/api.js"></script>
+     <script src="/js/auth.js"></script>
+     <script src="/js/main.js"></script>
+     <script src="/js/cms-builder.js"></script>
+    <!-- AI Chatbot Widget -->
+    <script src="/js/chatbot.js?v=2"></script>
+
+    <!-- Gallery Loading Script -->
+    <script>
+        let allItems = [];
+        let filterCategory = 'all';
+
+        const grid = document.getElementById('gallery-grid');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchGallery();
+
+            // Category Tab Event Handlers
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    buttons.forEach(b => {
+                        b.classList.remove('btn-gold', 'active');
+                        b.classList.add('btn-outline-gold');
+                    });
+                    btn.classList.remove('btn-outline-gold');
+                    btn.classList.add('btn-gold', 'active');
+
+                    filterCategory = btn.getAttribute('data-category');
+                    renderGallery();
+                });
+            });
+        });
+
+        function fetchGallery() {
+            API.get('/gallery')
+                .then(data => {
+                    allItems = data;
+                    renderGallery();
+                })
+                .catch(err => {
+                    grid.innerHTML = `
+                        <div class="col-12 text-center text-danger py-5">
+                            <i class="bi bi-exclamation-triangle fs-1"></i>
+                            <p class="mt-2">Failed to load media gallery.</p>
+                        </div>
+                    `;
+                });
+        }
+
+        function renderGallery() {
+            const filtered = allItems.filter(item => {
+                return filterCategory === 'all' || item.category === filterCategory;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-12 text-center text-secondary py-5">
+                        <i class="bi bi-images fs-1"></i>
+                        <p class="mt-2">No images available for this category.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = '';
+            filtered.forEach(item => {
+                // Curated fallback based on category to make it beautiful
+                let defaultUnsplash = 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=400&q=80';
+                if (item.category === 'Wedding') defaultUnsplash = 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80';
+                if (item.category === 'Farming') defaultUnsplash = 'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=400&q=80';
+                if (item.category === 'Products') defaultUnsplash = 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=400&q=80';
+
+                const src = item.imageUrl.startsWith('/images') ? defaultUnsplash : item.imageUrl;
+
+                const col = document.createElement('div');
+                col.className = 'col-sm-6 col-md-4 col-lg-3 fade-in-up';
+                col.innerHTML = `
+                    <div class="royal-card p-2 h-100">
+                        <img src="${src}" alt="${item.title}" class="img-fluid rounded" style="width: 100%; height: 220px; object-fit: cover;" onerror="this.src='${defaultUnsplash}'">
+                        <div class="p-2 text-center">
+                            <span class="badge bg-warning text-dark mb-1">${item.category}</span>
+                            <h6 class="text-white royal-font mt-1 mb-0">${item.title}</h6>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(col);
+            });
+        }
+    </script>
+</body>
+</html>

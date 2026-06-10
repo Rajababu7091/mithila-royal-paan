@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Mithila Royal Paan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/chatbot.css?v=2">
+</head>
+<body class="mithila-motif-bg">
+
+    <!-- Header Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-royal sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/index.html">
+                <img id="header-logo-img" src="" alt="" class="me-2" style="height: 30px; display: none;" onload="this.style.display='inline-block'; document.getElementById('header-logo-icon') ? document.getElementById('header-logo-icon').style.display='none' : null;">
+                <i id="header-logo-icon" class="bi bi-leaf-fill text-warning me-2"></i>
+                <span id="header-site-title">Mithila Royal Paan</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact Us</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="theme-switch-wrapper me-3">
+                        <i class="bi bi-moon-fill text-warning me-2"></i>
+                        <label class="theme-switch" for="theme-toggle-chk">
+                            <input type="checkbox" id="theme-toggle-chk" />
+                            <div class="slider"></div>
+                        </label>
+                        <i class="bi bi-sun-fill text-warning ms-2"></i>
+                    </div>
+                    <a href="/login.html" id="nav-auth-link" class="btn btn-gold"><i class="bi bi-box-arrow-in-right me-1"></i> Login</a>
+                    <span id="nav-register-item">
+                        <a href="/register.html" class="btn btn-outline-gold ms-2">Register</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="py-5 text-center bg-secondary border-bottom border-warning">
+        <div class="container py-2">
+            <h1 class="display-4 text-white royal-font" data-cms-key="blog_hero_title">Mithila Cultural Editorial</h1>
+            <p class="lead text-warning max-w-xl mx-auto" data-cms-key="blog_hero_subtitle">Discover articles about historical betel leaf rituals, cultivation sciences, GI tag specifications, and traditional recipes.</p>
+        </div>
+    </section>
+
+    <!-- Blogs Listing -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4" id="blogs-grid">
+                <!-- Blogs loaded dynamically -->
+                <div class="text-center py-5">
+                    <div class="spinner-border text-warning" role="status">
+                        <span class="visually-hidden">Loading blog posts...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Read Modal -->
+    <div class="modal fade" id="blogModal" tabindex="-1" aria-labelledby="blogModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content royal-card" style="background-color: var(--bg-secondary); border-color: var(--gold-primary);">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <img id="modal-blog-img" src="" alt="" class="img-fluid rounded mb-4" style="width: 100%; height: 350px; object-fit: cover;">
+                    <span class="text-warning small" id="modal-blog-author">By Editorial</span>
+                    <h2 class="royal-font text-white mt-1 mb-3" id="modal-blog-title">Blog Title</h2>
+                    <div class="text-light" style="line-height: 1.8; white-space: pre-line;" id="modal-blog-content">
+                        Blog Content...
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-outline-gold" data-bs-dismiss="modal">Close Reader</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-royal">
+        <div class="container text-center text-md-start">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h5 class="text-warning royal-font"><i class="bi bi-leaf-fill text-warning me-2"></i>Mithila Royal Paan</h5>
+                    <p class="text-secondary" id="footer-about-text">Connecting global patrons to organic Magahi betel farms in Bihar and providing luxury live wedding counters since 1974.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5 class="text-warning royal-font">Contact</h5>
+                    <p class="text-secondary m-0">support@mithilaroyalpaan.com | +91 70614 05543</p>
+                </div>
+            </div>
+            <hr class="border-warning my-4">
+            <p class="text-secondary text-center m-0" id="footer-copyright">&copy; 2026 Mithila Royal Paan. All Rights Reserved.</p>
+        </div>
+     </footer>
+ 
+     <!-- Bootstrap 5 Bundle JS -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="/js/api.js"></script>
+     <script src="/js/auth.js"></script>
+     <script src="/js/main.js"></script>
+     <script src="/js/cms-builder.js"></script>
+    <!-- AI Chatbot Widget -->
+    <script src="/js/chatbot.js?v=2"></script>
+
+    <!-- Blog loading Script -->
+    <script>
+        let allBlogs = [];
+        const grid = document.getElementById('blogs-grid');
+        let bsBlogModal = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const modalEl = document.getElementById('blogModal');
+            if (modalEl) {
+                bsBlogModal = new bootstrap.Modal(modalEl);
+            }
+            fetchBlogs();
+        });
+
+        function fetchBlogs() {
+            API.get('/blogs')
+                .then(data => {
+                    allBlogs = data;
+                    renderBlogs();
+                })
+                .catch(err => {
+                    grid.innerHTML = `
+                        <div class="col-12 text-center text-danger py-5">
+                            <i class="bi bi-exclamation-triangle fs-1"></i>
+                            <p class="mt-2">Failed to load articles.</p>
+                        </div>
+                    `;
+                });
+        }
+
+        function renderBlogs() {
+            if (allBlogs.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-12 text-center text-secondary py-5">
+                        <i class="bi bi-journal-text fs-1"></i>
+                        <p class="mt-2">No articles published yet.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = '';
+            allBlogs.forEach(b => {
+                const defaultUnsplash = 'https://images.unsplash.com/photo-1582376432754-b63cc6a9b8c3?auto=format&fit=crop&w=600&q=80';
+                // Resolve path relative to seed data path or use standard placeholder
+                const src = b.imageUrl.startsWith('/images') ? defaultUnsplash : b.imageUrl;
+                
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-4 fade-in-up';
+                col.innerHTML = `
+                    <div class="royal-card h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <img src="${src}" alt="${b.title}" class="img-fluid rounded mb-3" style="width:100%; height:200px; object-fit:cover;" onerror="this.src='${defaultUnsplash}'">
+                            <small class="text-warning font-monospace">${new Date(b.createdAt || new Date()).toLocaleDateString()}</small>
+                            <h4 class="royal-font text-white mt-1 mb-2">${b.title}</h4>
+                            <p class="text-secondary small line-clamp-3">${b.content.substring(0, 140)}...</p>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top border-warning" style="border-top-style: dotted !important;">
+                            <span class="text-secondary small">By ${b.authorName}</span>
+                            <button class="btn btn-outline-gold btn-sm" onclick="readFullBlog(${b.id})">Read Article</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(col);
+            });
+        }
+
+        function readFullBlog(id) {
+            const b = allBlogs.find(item => item.id === id);
+            if (!b) return;
+
+            const defaultUnsplash = 'https://images.unsplash.com/photo-1582376432754-b63cc6a9b8c3?auto=format&fit=crop&w=600&q=80';
+            const src = b.imageUrl.startsWith('/images') ? defaultUnsplash : b.imageUrl;
+
+            document.getElementById('modal-blog-img').src = src;
+            document.getElementById('modal-blog-title').textContent = b.title;
+            document.getElementById('modal-blog-author').textContent = `Published by ${b.authorName} on ${new Date(b.createdAt || new Date()).toLocaleDateString()}`;
+            document.getElementById('modal-blog-content').textContent = b.content;
+
+            bsBlogModal.show();
+        }
+    </script>
+    <style>
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+    </style>
+</body>
+</html>

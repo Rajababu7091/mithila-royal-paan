@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard - Mithila Royal Paan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="mithila-motif-bg">
+
+    <!-- Header Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-royal sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/index.html">
+                <i class="bi bi-leaf-fill text-warning me-2"></i>Mithila Royal Paan
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact Us</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="theme-switch-wrapper me-3">
+                        <i class="bi bi-moon-fill text-warning me-2"></i>
+                        <label class="theme-switch" for="theme-toggle-chk">
+                            <input type="checkbox" id="theme-toggle-chk" />
+                            <div class="slider"></div>
+                        </label>
+                        <i class="bi bi-sun-fill text-warning ms-2"></i>
+                    </div>
+                    <button onclick="Auth.logout()" class="btn btn-outline-danger ms-2"><i class="bi bi-box-arrow-right me-1"></i> Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Panel -->
+    <section class="py-4 bg-secondary border-bottom border-warning">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md-6 text-center text-md-start">
+                    <h1 class="royal-font text-white m-0">Namaste, <span id="client-name" class="text-warning">Patron</span></h1>
+                    <p class="text-secondary m-0 mt-1">Manage your event bookings, track orders, and view notifications from one central portal.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <span class="badge bg-warning text-dark px-3 py-2 royal-font fs-6">Customer Account</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Dashboard Body -->
+    <section class="py-5">
+        <div class="container">
+            
+            <!-- Global Alert -->
+            <div id="dashboard-alert-container"></div>
+
+            <div class="row g-4">
+                <!-- Sidebar Navigation -->
+                <div class="col-md-3">
+                    <div class="royal-card p-0 overflow-hidden">
+                        <div class="list-group list-group-flush" id="dashboard-tabs" role="tablist" style="background-color: transparent;">
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0 active" id="tab-bookings-btn" data-bs-toggle="list" data-bs-target="#panel-bookings" role="tab">
+                                <i class="bi bi-calendar-event-fill text-warning me-2"></i> Event Bookings
+                            </button>
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0" id="tab-orders-btn" data-bs-toggle="list" data-bs-target="#panel-orders" role="tab">
+                                <i class="bi bi-bag-check-fill text-warning me-2"></i> Product Orders
+                            </button>
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0 position-relative" id="tab-alerts-btn" data-bs-toggle="list" data-bs-target="#panel-alerts" role="tab">
+                                <i class="bi bi-bell-fill text-warning me-2"></i> Notifications
+                                <span id="alerts-count-badge" class="position-absolute top-50 end-0 translate-middle-y badge rounded-pill bg-danger me-3" style="display:none;">0</span>
+                            </button>
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0" id="tab-profile-btn" data-bs-toggle="list" data-bs-target="#panel-profile" role="tab">
+                                <i class="bi bi-person-fill-gear text-warning me-2"></i> Profile Setup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panels Display -->
+                <div class="col-md-9">
+                    <div class="tab-content" id="nav-tabContent">
+                        
+                        <!-- Panel 1: Bookings -->
+                        <div class="tab-pane fade show active" id="panel-bookings" role="tabpanel" aria-labelledby="tab-bookings-btn">
+                            <div class="royal-card">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="royal-font text-warning m-0">Your Wedding & Event Bookings</h4>
+                                    <a href="/wedding-paan.html" class="btn btn-gold btn-sm"><i class="bi bi-plus-circle me-1"></i> New Booking</a>
+                                </div>
+                                
+                                <div class="table-responsive">
+                                    <table class="table table-royal text-center align-middle">
+                                        <thead>
+                                            <tr>
+                                                <th>Booking ID</th>
+                                                <th>Service Type</th>
+                                                <th>Event Date</th>
+                                                <th>Location</th>
+                                                <th>Guests</th>
+                                                <th>Coordinator</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bookings-table-body">
+                                            <tr>
+                                                <td colspan="7" class="text-secondary py-4">No event bookings placed yet.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 2: Orders -->
+                        <div class="tab-pane fade" id="panel-orders" role="tabpanel" aria-labelledby="tab-orders-btn">
+                            <div class="royal-card">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="royal-font text-warning m-0">Your Product Orders</h4>
+                                    <a href="/products.html" class="btn btn-gold btn-sm"><i class="bi bi-cart3 me-1"></i> Order Products</a>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-royal text-center align-middle">
+                                        <thead>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Product</th>
+                                                <th>Qty</th>
+                                                <th>Total Price</th>
+                                                <th>Shipping Info</th>
+                                                <th>Placed Date</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="orders-table-body">
+                                            <tr>
+                                                <td colspan="7" class="text-secondary py-4">No product orders placed yet.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 3: Notifications -->
+                        <div class="tab-pane fade" id="panel-alerts" role="tabpanel" aria-labelledby="tab-alerts-btn">
+                            <div class="royal-card">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="royal-font text-warning m-0">Your Notifications</h4>
+                                    <button class="btn btn-outline-gold btn-sm" id="mark-all-read-btn">Mark All As Read</button>
+                                </div>
+
+                                <div class="list-group list-group-flush" id="alerts-list-container">
+                                    <div class="text-center text-secondary py-4">No alerts or notifications.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 4: Profile -->
+                        <div class="tab-pane fade" id="panel-profile" role="tabpanel" aria-labelledby="tab-profile-btn">
+                            <div class="royal-card">
+                                <h4 class="royal-font text-warning mb-4">Profile Details</h4>
+                                <form id="profile-edit-form">
+                                    <div class="row g-3">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label text-warning small royal-font">Full Name</label>
+                                            <input type="text" class="form-control form-royal-control" id="profile-name" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label text-warning small royal-font">Email Address (Primary Username)</label>
+                                            <input type="email" class="form-control form-royal-control" id="profile-email" readonly disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label text-warning small royal-font">Contact Phone</label>
+                                            <input type="text" class="form-control form-royal-control" id="profile-phone" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label text-warning small royal-font">Account Source</label>
+                                            <input type="text" class="form-control form-royal-control" id="profile-provider" readonly disabled>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-gold mt-3" onclick="alert('Profile details updating disabled in demo mode.')">Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-royal">
+        <div class="container text-center text-md-start">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h5 class="text-warning royal-font"><i class="bi bi-leaf-fill text-warning me-2"></i>Mithila Royal Paan</h5>
+                    <p class="text-secondary">Connecting global patrons to organic Magahi betel farms in Bihar and providing luxury live wedding counters since 1974.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5 class="text-warning royal-font">Contact</h5>
+                    <p class="text-secondary m-0">support@mithilaroyalpaan.com | +91 98765 43210</p>
+                </div>
+            </div>
+            <hr class="border-warning my-4">
+            <p class="text-secondary text-center m-0">&copy; 2026 Mithila Royal Paan. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/main.js"></script>
+    
+    <!-- Dashboard Controller JS -->
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

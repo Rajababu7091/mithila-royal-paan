@@ -1,0 +1,7 @@
+/target/
+/backend/target/
+/uploads/
+/backend/uploads/
+.vscode/
+.idea/
+*.log

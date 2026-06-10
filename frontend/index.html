@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mithila Royal Paan - Premium Betel Leaf Farming & Wedding Catering</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- AI Chatbot Widget -->
+    <link rel="stylesheet" href="/css/chatbot.css?v=2">
+</head>
+<body class="mithila-motif-bg cms-loading">
+
+    <!-- Header Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-royal sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/index.html">
+                <img id="header-logo-img" src="" alt="" class="me-2" style="height: 30px; display: none;" onload="this.style.display='inline-block'; document.getElementById('header-logo-icon') ? document.getElementById('header-logo-icon').style.display='none' : null;">
+                <i id="header-logo-icon" class="bi bi-leaf-fill text-warning me-2"></i>
+                <span id="header-site-title">Mithila Royal Paan</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" href="/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact.html">Contact Us</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <!-- Theme switch selector -->
+                    <div class="theme-switch-wrapper me-3">
+                        <i class="bi bi-moon-fill text-warning me-2"></i>
+                        <label class="theme-switch" for="theme-toggle-chk">
+                            <input type="checkbox" id="theme-toggle-chk" />
+                            <div class="slider"></div>
+                        </label>
+                        <i class="bi bi-sun-fill text-warning ms-2"></i>
+                    </div>
+                    <a href="/login.html" id="nav-auth-link" class="btn btn-gold"><i class="bi bi-box-arrow-in-right me-1"></i> Login</a>
+                    <span id="nav-register-item">
+                        <a href="/register.html" class="btn btn-outline-gold ms-2">Register</a>
+                    </span>
+                    <a href="/dashboard.html" class="position-relative ms-3 text-warning" id="notification-badge-link">
+                        <i class="bi bi-bell-fill fs-5"></i>
+                        <span id="notification-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display:none; font-size: 0.65rem;">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner Section -->
+    <header class="hero-section text-center text-lg-start d-flex align-items-center" data-cms-key="home_hero_bg_image" data-cms-bg="true">
+        <div class="container py-4">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 fade-in-up">
+                    <div class="mb-4 d-inline-flex align-items-center justify-content-center justify-content-lg-start" style="border: 1px solid rgba(201,162,39,0.5); border-radius: 30px; padding: 6px 18px;">
+                        <i class="bi bi-tropical-storm text-warning me-2" style="transform: rotate(45deg);"></i>
+                        <span style="color: #c9a227; font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 600;">SINCE 1974 • AUTHENTIC MITHILA HERITAGE • PREMIUM BETEL LEAVES</span>
+                    </div>
+
+                    <h1 class="display-4 text-white mb-4 royal-font" style="line-height: 1.25; font-weight: 600;" data-cms-key="home_hero_title">
+                        Experience the<br>Heritage of<br>
+                        <span class="text-warning">Mithila's Finest<br>Betel Leaves</span>
+                    </h1>
+
+                    <div class="mb-4 d-flex align-items-center justify-content-center justify-content-lg-start" style="max-width: 350px;">
+                        <hr class="flex-grow-1 m-0" style="border-top: 1px solid #c9a227; opacity: 1;">
+                        <span class="mx-3" style="color: #c9a227; font-size: 1.2rem;">⚜</span>
+                        <hr class="flex-grow-1 m-0" style="border-top: 1px solid #c9a227; opacity: 1;">
+                    </div>
+
+                    <p class="lead text-light mb-5 pe-lg-4" style="font-size: 1.05rem; opacity: 0.9; line-height: 1.6;" data-cms-key="home_hero_subtitle">
+                        From the fertile lands of Mithila to your special moments, we bring you premium, organic and handpicked paan, crafted for weddings, celebrations, gifting and unforgettable experiences.
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-3 mb-5 justify-content-center justify-content-lg-start">
+                        <a href="/wedding-paan.html" class="btn btn-gold btn-lg px-4 py-3" style="border-radius: 8px; font-size: 0.95rem;" data-cms-key="home_hero_btn1" data-cms-link="true"><i class="bi bi-calendar3 me-2"></i>Book Wedding Counter</a>
+                        <a href="/products.html" class="btn btn-outline-gold btn-lg px-4 py-3" style="border-radius: 8px; font-size: 0.95rem;" data-cms-key="home_hero_btn2" data-cms-link="true"><i class="bi bi-compass me-2"></i>Explore Our Products</a>
+                    </div>
+
+                    <div class="row g-2 text-center mt-3" style="max-width: 500px; margin: 0 auto 0 0;">
+                        <div class="col-3">
+                            <div class="text-warning mb-2"><i class="bi bi-flower1 fs-3"></i></div>
+                            <div style="font-size: 0.75rem; color: #bbb; line-height: 1.3;">100% Organic<br>& Natural</div>
+                        </div>
+                        <div class="col-3">
+                            <div class="text-warning mb-2"><i class="bi bi-hand-index-thumb fs-3"></i></div>
+                            <div style="font-size: 0.75rem; color: #bbb; line-height: 1.3;">Handpicked<br>with Care</div>
+                        </div>
+                        <div class="col-3">
+                            <div class="text-warning mb-2"><i class="bi bi-award fs-3"></i></div>
+                            <div style="font-size: 0.75rem; color: #bbb; line-height: 1.3;">Premium Quality<br>Assured</div>
+                        </div>
+                        <div class="col-3">
+                            <div class="text-warning mb-2"><i class="bi bi-shield-check fs-3"></i></div>
+                            <div style="font-size: 0.75rem; color: #bbb; line-height: 1.3;">Trusted by 1000+<br>Happy Customers</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 text-center mt-5 mt-lg-0">
+                    <div class="position-relative mx-auto" style="width: 100%; max-width: 550px;">
+                        <!-- Glowing Outer Border -->
+                        <div style="position: absolute; top: -15px; left: -15px; right: -15px; bottom: -15px; border: 2px solid rgba(201,162,39,0.8); border-radius: 20px; box-shadow: 0 0 30px rgba(201,162,39,0.3); pointer-events: none; z-index: 1;"></div>
+                        
+                        <!-- Top Logo Badge -->
+                        <div style="position: absolute; top: -50px; left: 50%; transform: translateX(-50%); background: #0a0a0a; border: 1px solid #c9a227; padding: 12px 30px; border-radius: 12px; z-index: 3; min-width: 180px; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
+                            <div class="text-warning mb-1" style="font-size: 1.2rem;">⚜</div>
+                            <h5 class="royal-font text-warning m-0 mb-1" style="font-weight: 700; letter-spacing: 1px; font-size: 1.1rem; line-height: 1.2;">MITHILA<br>ROYAL PAAN</h5>
+                            <div style="color: #aaa; font-size: 0.55rem; letter-spacing: 1.5px;">TRADITION | QUALITY | HERITAGE</div>
+                        </div>
+
+                        <!-- Image -->
+                        <div style="position: relative; border-radius: 15px; overflow: hidden; z-index: 2; box-shadow: 0 10px 30px rgba(0,0,0,0.8);">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Mithila Magahi Paan"
+                                class="d-block w-100"
+                                style="height: 500px; object-fit: cover;"
+                                data-cms-key="home_hero_image">
+                            <!-- Slight dark overlay on image edges -->
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; box-shadow: inset 0 0 50px rgba(0,0,0,0.8); pointer-events: none;"></div>
+                        </div>
+
+                        <!-- Bottom Ribbon Badge -->
+                        <div style="position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); background: #0a0a0a; border: 1px solid #c9a227; padding: 12px 40px; border-radius: 4px; z-index: 3; white-space: nowrap; box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 15px;">
+                            <span style="color: #c9a227; font-size: 1.2rem;">⚜</span>
+                            <div class="royal-font text-warning text-center" style="letter-spacing: 1.5px; font-weight: 600; font-size: 0.95rem; line-height: 1.4;">
+                                MITHILA KA ASLI SWAD<br>MITHA PAAN
+                            </div>
+                            <span style="color: #c9a227; font-size: 1.2rem;">⚜</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Highlights -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Royal Catering & Event Services</h2>
+                <p class="text-secondary max-w-xl mx-auto">Bring Bihar's age-old hospitality tradition to your guests. We set up premium themed paan counters featuring traditional Mithila decorations, fresh farm leaves, and live setups.</p>
+            </div>
+            
+            <div class="row g-4 mt-3" id="services-highlights-container">
+                <div class="col-12 text-center py-4 text-secondary">Loading services list...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bulk Orders and Export CTA -->
+    <section class="py-5 bg-secondary border-top border-bottom border-warning">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <h2 class="royal-font text-warning display-5">Global Export & Bulk Farming</h2>
+                    <p class="text-white lead mt-3">Directly sourcing from betel farms of Mithila (Madhubani, Darbhanga). We supply premium leaves in customized temperature-controlled packaging to global importers, retail stores, and event houses.</p>
+                    <div class="row g-4 mt-3">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-airplane-engines text-warning fs-3 me-3"></i>
+                                <div>
+                                    <h6 class="text-white mb-0 royal-font">Global Shipping</h6>
+                                    <small class="text-secondary">Fully export certified leaves</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-shield-check text-warning fs-3 me-3"></i>
+                                <div>
+                                    <h6 class="text-white mb-0 royal-font">100% Organic</h6>
+                                    <small class="text-secondary">Farm fresh chemical-free</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="royal-card">
+                        <h4 class="text-warning royal-font mb-4 text-center">B2B Export Enquiry</h4>
+                        <div id="enquiry-alert-placeholder"></div>
+                        <form id="export-enquiry-form">
+                            <div class="mb-3">
+                                <input type="text" class="form-control form-royal-control" id="enq-name" placeholder="Contact Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control form-royal-control" id="enq-email" placeholder="Business Email" required>
+                            </div>
+                            <div class="row g-2 mb-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control form-royal-control" id="enq-country" placeholder="Country" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control form-royal-control" id="enq-qty" placeholder="Monthly Qty (kg)" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select form-royal-control" id="enq-biz-type" required>
+                                    <option value="" disabled selected>Select Business Type</option>
+                                    <option value="Importer">Importer</option>
+                                    <option value="Distributor">Distributor</option>
+                                    <option value="Retailer">Retailer</option>
+                                    <option value="Event Planner">Event Planner</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control form-royal-control" id="enq-msg" rows="3" placeholder="Briefly specify your requirement..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-gold w-100">Submit Export Enquiry</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">What Our Patrons Say</h2>
+            </div>
+            
+            <div id="testimonialCarousel" class="carousel slide testimonial-carousel royal-card max-w-xl mx-auto" data-bs-ride="carousel">
+                <div class="carousel-inner" id="testimonials-container">
+                    <!-- Testimonials will load here dynamically via Javascript -->
+                    <div class="carousel-item active">
+                        <div class="testimonial-card">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80" alt="Patron" class="testimonial-avatar">
+                            <div class="rating-stars">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="fst-italic text-light">"The presentation of fire paan at our wedding reception was absolutely stunning! High sanitation standards, organic leaves, and delicious flavors. Highly recommended!"</p>
+                            <h5 class="text-warning mt-3 mb-0 royal-font">Meera Jha</h5>
+                            <small class="text-secondary">Wedding Event Host, Patna</small>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1) sepia(100%) saturate(1000%) hue-rotate(30deg);"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1) sepia(100%) saturate(1000%) hue-rotate(30deg);"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5 bg-secondary border-top border-warning">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="accordion accordion-royal max-w-2xl mx-auto" id="faqAccordion">
+                <div class="col-12 text-center py-4 text-secondary">Loading FAQ items...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-royal text-center text-md-start">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="text-warning royal-font"><i class="bi bi-leaf-fill text-warning me-2"></i>Mithila Royal Paan</h5>
+                    <p class="text-secondary mt-2" data-cms-key="footer_text">Connecting global patrons to organic Magahi betel farms in Bihar and providing luxury live wedding counters since 1974.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-warning royal-font">Quick Links</h5>
+                    <ul class="list-unstyled mt-2">
+                        <li><a href="/about.html" class="text-secondary text-decoration-none">About Our Farms</a></li>
+                        <li><a href="/services.html" class="text-secondary text-decoration-none">Wedding & Event Catering</a></li>
+                        <li><a href="/products.html" class="text-secondary text-decoration-none">Buy Premium Gift Packs</a></li>
+                        <li><a href="/blog.html" class="text-secondary text-decoration-none">Cultural Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-warning royal-font">Contact Headquarters</h5>
+                    <p class="text-secondary mt-2 mb-1"><i class="bi bi-geo-alt-fill text-warning me-2"></i><span data-cms-key="contact_office_address">Madhubani Farms, Darbhanga, Bihar, IN</span></p>
+                    <p class="text-secondary mb-1"><i class="bi bi-envelope-fill text-warning me-2"></i><span data-cms-key="contact_email">support@mithilaroyalpaan.com</span></p>
+                    <p class="text-secondary"><i class="bi bi-telephone-fill text-warning me-2"></i><span data-cms-key="contact_phone">+91 70614 05543</span></p>
+                </div>
+            </div>
+            <hr class="border-warning my-4">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p class="text-secondary m-0" id="footer-copyright">&copy; 2026 Mithila Royal Paan. All Rights Reserved.</p>
+                <div class="d-flex gap-3 mt-3 mt-md-0">
+                    <a href="#" class="text-secondary fs-5"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-secondary fs-5"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-secondary fs-5"><i class="bi bi-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/917061405543?text=Hello%20Mithila%20Royal%20Paan!" class="whatsapp-float" target="_blank">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS Scripts -->
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/cms-builder.js"></script>
+    <!-- AI Chatbot Widget -->
+    <script src="/js/chatbot.js?v=2"></script>
+
+    <!-- Homepage controller script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load Services
+            fetch('/api/v1/services')
+                .then(res => res.json())
+                .then(list => {
+                    if (list.length > 0) {
+                        const container = document.getElementById('services-highlights-container');
+                        container.innerHTML = '';
+                        list.forEach(item => {
+                            const featuresList = item.features ? item.features.split(',').map(f => `<li><i class="bi bi-check2 text-warning me-2"></i>${f.trim()}</li>`).join('') : '';
+                            const col = document.createElement('div');
+                            col.className = 'col-lg-4 col-md-6';
+                            col.innerHTML = `
+                                <div class="royal-card h-100 d-flex flex-column justify-content-between">
+                                    <div>
+                                        <img src="${item.imageUrl || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80'}" class="img-fluid rounded mb-3 royal-border" style="max-height: 180px; width: 100%; object-fit: cover;">
+                                        <h3 class="royal-font text-white">${item.name}</h3>
+                                        <p class="text-secondary">${item.description}</p>
+                                        ${featuresList ? `<ul class="list-unstyled text-secondary small mt-3">${featuresList}</ul>` : ''}
+                                    </div>
+                                    <div class="mt-4">
+                                        <span class="text-warning fw-bold d-block mb-3">Starting at INR ${item.price}</span>
+                                        <a href="/contact.html" class="btn btn-gold w-100">Enquire Now</a>
+                                    </div>
+                                </div>
+                            `;
+                            container.appendChild(col);
+                        });
+                    }
+                })
+                .catch(err => console.log("Failed to load services:", err));
+
+            // Load Testimonials
+            API.get('/testimonials')
+                .then(list => {
+                    if (list.length > 0) {
+                        const container = document.getElementById('testimonials-container');
+                        container.innerHTML = ''; // clear initial hardcoded slide
+                        list.forEach((item, index) => {
+                            const activeClass = index === 0 ? 'active' : '';
+                            const avatar = item.avatarUrl || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80';
+                            
+                            let starsHtml = '';
+                            for (let i = 0; i < item.rating; i++) {
+                                starsHtml += '<i class="bi bi-star-fill text-warning me-1"></i>';
+                            }
+
+                            const slide = document.createElement('div');
+                            slide.className = `carousel-item ${activeClass}`;
+                            slide.innerHTML = `
+                                <div class="testimonial-card">
+                                    <img src="${avatar}" alt="${item.authorName}" class="testimonial-avatar">
+                                    <div class="rating-stars mb-2">${starsHtml}</div>
+                                    <p class="fst-italic text-light">"${item.text}"</p>
+                                    <h5 class="text-warning mt-3 mb-0 royal-font">${item.authorName}</h5>
+                                    <small class="text-secondary">${item.authorRole || 'Guest'}</small>
+                                </div>
+                            `;
+                            container.appendChild(slide);
+                        });
+                    }
+                })
+                .catch(err => console.log("Failed to load testimonials:", err));
+
+            // Load FAQs
+            fetch('/api/v1/faqs')
+                .then(res => res.json())
+                .then(list => {
+                    if (list.length > 0) {
+                        const accordion = document.getElementById('faqAccordion');
+                        accordion.innerHTML = '';
+                        list.forEach((item, index) => {
+                            const collapsed = index === 0 ? '' : 'collapsed';
+                            const show = index === 0 ? 'show' : '';
+                            const ariaExpanded = index === 0 ? 'true' : 'false';
+                            
+                            const itemEl = document.createElement('div');
+                            itemEl.className = 'accordion-item';
+                            itemEl.innerHTML = `
+                                <h2 class="accordion-header" id="faqHeading-${item.id}">
+                                    <button class="accordion-button ${collapsed}" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse-${item.id}" aria-expanded="${ariaExpanded}" aria-controls="faqCollapse-${item.id}">
+                                        ${item.question}
+                                    </button>
+                                </h2>
+                                <div id="faqCollapse-${item.id}" class="accordion-collapse collapse ${show}" aria-labelledby="faqHeading-${item.id}" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        ${item.answer}
+                                    </div>
+                                </div>
+                            `;
+                            accordion.appendChild(itemEl);
+                        });
+                    }
+                })
+                .catch(err => console.log("Failed to load FAQs:", err));
+
+            // Export Enquiry Submission
+            const exportForm = document.getElementById('export-enquiry-form');
+            if (exportForm) {
+                exportForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const req = {
+                        name: document.getElementById('enq-name').value,
+                        email: document.getElementById('enq-email').value,
+                        country: document.getElementById('enq-country').value,
+                        quantityRequirement: document.getElementById('enq-qty').value,
+                        contactInfo: document.getElementById('enq-name').value + ' (' + document.getElementById('enq-email').value + ')',
+                        businessType: document.getElementById('enq-biz-type').value,
+                        message: document.getElementById('enq-msg').value
+                    };
+
+                    API.post('/export-enquiries', req)
+                        .then(data => {
+                            showGlobalAlert('Your export enquiry has been successfully submitted! Our team will contact you soon.', 'success', 'enquiry-alert-placeholder');
+                            exportForm.reset();
+                        })
+                        .catch(err => {
+                            showGlobalAlert(err.message || 'Submission failed.', 'danger', 'enquiry-alert-placeholder');
+                        });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

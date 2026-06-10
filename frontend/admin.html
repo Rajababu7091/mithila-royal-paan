@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Mithila Royal Paan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/chatbot.css?v=2">
+</head>
+<body class="mithila-motif-bg">
+
+    <!-- Header Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-royal sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand" href="/index.html">
+                <i class="bi bi-leaf-fill text-warning me-2"></i>Mithila Royal Paan <span class="text-secondary fs-6">| Administration</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="/index.html">Visitor Portal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/products.html">Products Catalog</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <button onclick="Auth.logout()" class="btn btn-outline-danger ms-2"><i class="bi bi-box-arrow-right me-1"></i> Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Stats Panel -->
+    <section class="py-4 bg-secondary border-bottom border-warning">
+        <div class="container-fluid px-4">
+            <div id="admin-alert-container"></div>
+            
+            <!-- KPI Cards Grid -->
+            <div class="row g-3">
+                <div class="col-md-4 col-lg-2">
+                    <div class="royal-card kpi-card p-3 h-100">
+                        <small class="text-secondary text-uppercase royal-font">Total Revenue</small>
+                        <h3 class="text-warning font-monospace mt-1 mb-0" id="stat-revenue">INR 0.00</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2.5">
+                    <div class="royal-card kpi-card p-3 h-100" style="border-left-color: #f3e5ab !important;">
+                        <small class="text-secondary text-uppercase royal-font">Wedding Bookings</small>
+                        <h3 class="text-white font-monospace mt-1 mb-0" id="stat-bookings">0</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2">
+                    <div class="royal-card kpi-card p-3 h-100" style="border-left-color: #aa8618 !important;">
+                        <small class="text-secondary text-uppercase royal-font">Product Orders</small>
+                        <h3 class="text-white font-monospace mt-1 mb-0" id="stat-orders">0</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2">
+                    <div class="royal-card kpi-card p-3 h-100" style="border-left-color: #e6c875 !important;">
+                        <small class="text-secondary text-uppercase royal-font">Export Leads</small>
+                        <h3 class="text-white font-monospace mt-1 mb-0" id="stat-leads">0</h3>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2">
+                    <div class="royal-card kpi-card p-3 h-100">
+                        <small class="text-secondary text-uppercase royal-font">Total Customers</small>
+                        <h3 class="text-white font-monospace mt-1 mb-0" id="stat-customers">0</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Workspace -->
+    <section class="py-4">
+        <div class="container-fluid px-4">
+            <div class="row g-4">
+                
+                <!-- Sidebar tabs list -->
+                <div class="col-lg-2">
+                    <div class="royal-card p-0 overflow-hidden">
+                        <div class="list-group list-group-flush" id="admin-sidebar-tabs" role="tablist" style="background-color: transparent;">
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0 active" id="tab-admin-bookings-btn" data-bs-toggle="list" data-bs-target="#admin-panel-bookings" role="tab">
+                                <i class="bi bi-calendar2-week-fill text-warning me-2"></i> Bookings Manager
+                            </button>
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0" id="tab-admin-orders-btn" data-bs-toggle="list" data-bs-target="#admin-panel-orders" role="tab">
+                                <i class="bi bi-cart-check-fill text-warning me-2"></i> Orders Manager
+                            </button>
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0" id="tab-admin-leads-btn" data-bs-toggle="list" data-bs-target="#admin-panel-leads" role="tab">
+                                <i class="bi bi-envelope-paper-fill text-warning me-2"></i> Lead Center
+                            </button>
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0" id="tab-admin-products-btn" data-bs-toggle="list" data-bs-target="#admin-panel-products" role="tab">
+                                <i class="bi bi-grid-fill text-warning me-2"></i> Products CRUD
+                            </button>
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0" id="tab-admin-blogs-btn" data-bs-toggle="list" data-bs-target="#admin-panel-blogs" role="tab">
+                                <i class="bi bi-journal-richtext text-warning me-2"></i> Blogs CRUD
+                            </button>
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0" id="tab-admin-gallery-btn" data-bs-toggle="list" data-bs-target="#admin-panel-gallery" role="tab">
+                                <i class="bi bi-images text-warning me-2"></i> Media Gallery
+                            </button>
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0" id="tab-admin-testimonials-btn" data-bs-toggle="list" data-bs-target="#admin-panel-testimonials" role="tab">
+                                <i class="bi bi-chat-quote-fill text-warning me-2"></i> Testimonials
+                            </button>
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0" id="tab-admin-faqs-btn" data-bs-toggle="list" data-bs-target="#admin-panel-faqs" role="tab">
+                                <i class="bi bi-question-circle-fill text-warning me-2"></i> FAQs Manager
+                            </button>
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0" id="tab-admin-media-btn" data-bs-toggle="list" data-bs-target="#admin-panel-media" role="tab">
+                                <i class="bi bi-folder-fill text-warning me-2"></i> Central Media
+                            </button>
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0" id="tab-admin-users-btn" data-bs-toggle="list" data-bs-target="#admin-panel-users" role="tab">
+                                <i class="bi bi-people-fill text-warning me-2"></i> User Directory
+                            </button>
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0" id="tab-admin-settings-btn" data-bs-toggle="list" data-bs-target="#admin-panel-settings" role="tab">
+                                <i class="bi bi-gear-fill text-warning me-2"></i> Site Settings
+                            </button>
+                            <button class="list-group-item list-group-item-action bg-transparent text-white p-3 border-0" id="tab-admin-chatbot-btn" data-bs-toggle="list" data-bs-target="#admin-panel-chatbot" role="tab">
+                                <i class="bi bi-robot text-warning me-2"></i> AI Chatbot
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Panel Workspace -->
+                <div class="col-lg-10">
+                    <div class="tab-content">
+                        
+                        <!-- Panel 1: Booking Management -->
+                        <div class="tab-pane fade show active" id="admin-panel-bookings" role="tabpanel">
+                            <div class="royal-card">
+                                <h4 class="royal-font text-warning mb-4">Bookings Management Console</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-royal align-middle text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Client</th>
+                                                <th>Service</th>
+                                                <th>Event Date</th>
+                                                <th>Guests</th>
+                                                <th>Coordinator</th>
+                                                <th>Status</th>
+                                                <th>Workflow Operations</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="admin-bookings-table-body">
+                                            <tr><td colspan="8" class="text-secondary py-4">Loading bookings data...</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 2: Orders Management -->
+                        <div class="tab-pane fade" id="admin-panel-orders" role="tabpanel">
+                            <div class="royal-card">
+                                <h4 class="royal-font text-warning mb-4">Product Purchase Orders Console</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-royal align-middle text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Client</th>
+                                                <th>Product Purchased</th>
+                                                <th>Qty</th>
+                                                <th>Total Price</th>
+                                                <th>Shipping details</th>
+                                                <th>Placed Date</th>
+                                                <th>Status</th>
+                                                <th>Dispatch Ops</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="admin-orders-table-body">
+                                            <tr><td colspan="9" class="text-secondary py-4">Loading orders data...</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 3: Lead Center (Export Enquiries & Contact Messages) -->
+                        <div class="tab-pane fade" id="admin-panel-leads" role="tabpanel">
+                            <div class="royal-card mb-4">
+                                <h4 class="royal-font text-warning mb-4">B2B Export Leads</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-royal align-middle">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Client / Firm</th>
+                                                <th>Country</th>
+                                                <th>Requirement</th>
+                                                <th>Business Type</th>
+                                                <th>Contact Info</th>
+                                                <th>Message</th>
+                                                <th>Status</th>
+                                                <th>Operation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="admin-leads-table-body">
+                                            <tr><td colspan="9" class="text-secondary py-4">Loading lead data...</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="royal-card">
+                                <h4 class="royal-font text-warning mb-4">Contact Inbox Messages</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-royal align-middle">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Sender Name</th>
+                                                <th>Email & Phone</th>
+                                                <th>Subject</th>
+                                                <th>Message</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Operation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="admin-contact-table-body">
+                                            <tr><td colspan="8" class="text-secondary py-4">Loading contact inbox...</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 4: Products Management -->
+                        <div class="tab-pane fade" id="admin-panel-products" role="tabpanel">
+                            <div class="royal-card">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="royal-font text-warning m-0">Products Catalog CRUD</h4>
+                                    <button class="btn btn-gold btn-sm" onclick="openAddProductModal()"><i class="bi bi-plus-circle me-1"></i> Add Product</button>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-royal align-middle text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>Image</th>
+                                                <th>Name</th>
+                                                <th>Category</th>
+                                                <th>Price</th>
+                                                <th>Status</th>
+                                                <th>Operations</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="admin-products-table-body">
+                                            <tr><td colspan="6" class="text-secondary py-4">Loading products...</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 5: Blogs Management -->
+                        <div class="tab-pane fade" id="admin-panel-blogs" role="tabpanel">
+                            <div class="royal-card">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="royal-font text-warning m-0">Cultural Blog Manager</h4>
+                                    <button class="btn btn-gold btn-sm" onclick="openAddBlogModal()"><i class="bi bi-plus-circle me-1"></i> Publish Blog</button>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-royal align-middle">
+                                        <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Author</th>
+                                                <th>Created Date</th>
+                                                <th>Content Snippet</th>
+                                                <th>Operations</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="admin-blogs-table-body">
+                                            <tr><td colspan="5" class="text-secondary py-4">Loading blogs...</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 6: Gallery Management -->
+                        <div class="tab-pane fade" id="admin-panel-gallery" role="tabpanel">
+                            <div class="royal-card">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="royal-font text-warning m-0">Showcase Gallery Manager</h4>
+                                    <button class="btn btn-gold btn-sm" onclick="openAddGalleryModal()"><i class="bi bi-plus-circle me-1"></i> Add Media</button>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-royal align-middle text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>Image</th>
+                                                <th>Title</th>
+                                                <th>Category</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="admin-gallery-table-body">
+                                            <tr><td colspan="4" class="text-secondary py-4">Loading gallery items...</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 7: Testimonials Management -->
+                        <div class="tab-pane fade" id="admin-panel-testimonials" role="tabpanel">
+                            <div class="royal-card">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="royal-font text-warning m-0">Testimonials List</h4>
+                                    <button class="btn btn-gold btn-sm" onclick="openAddTestimonialModal()"><i class="bi bi-plus-circle me-1"></i> Add Review</button>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-royal align-middle">
+                                        <thead>
+                                            <tr>
+                                                <th>Author Name</th>
+                                                <th>Rating</th>
+                                                <th>Comment Review</th>
+                                                <th>Author Info</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="admin-testimonials-table-body">
+                                            <tr><td colspan="5" class="text-secondary py-4">Loading testimonials...</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel: FAQs Management -->
+                        <div class="tab-pane fade" id="admin-panel-faqs" role="tabpanel">
+                            <div class="royal-card">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="royal-font text-warning m-0">FAQs Manager</h4>
+                                    <button class="btn btn-gold btn-sm" onclick="openAddFaqModal()"><i class="bi bi-plus-circle me-1"></i> Add FAQ</button>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-royal align-middle">
+                                        <thead>
+                                            <tr>
+                                                <th>Question</th>
+                                                <th>Answer</th>
+                                                <th>Order</th>
+                                                <th>Operations</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="admin-faqs-table-body">
+                                            <tr><td colspan="4" class="text-secondary py-4">Loading FAQs...</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel: Central Media Library -->
+                        <div class="tab-pane fade" id="admin-panel-media" role="tabpanel">
+                            <div class="royal-card">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="royal-font text-warning m-0">Central Media Library</h4>
+                                </div>
+                                <div class="mb-4 border border-warning border-dashed p-4 text-center" style="border-style: dashed !important; border-radius: 8px;">
+                                    <label class="form-label text-warning small royal-font d-block mb-2">Upload New Media Asset (Images or Videos)</label>
+                                    <input type="file" class="form-control bg-transparent text-white border-warning w-50 d-inline-block" id="central-media-upload-input">
+                                    <button type="button" class="btn btn-gold ms-2" onclick="uploadCentralMedia()">Upload Asset</button>
+                                </div>
+                                <div class="row g-3" id="central-media-grid">
+                                    <div class="col-12 text-center py-4 text-secondary">Loading media assets...</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel 8: User Directory -->
+                        <div class="tab-pane fade" id="admin-panel-users" role="tabpanel">
+                            <div class="royal-card">
+                                <h4 class="royal-font text-warning mb-4">User & Staff Accounts Log</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-royal align-middle text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Login Source</th>
+                                                <th>System Role</th>
+                                                <th>Operations</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="admin-users-table-body">
+                                            <tr><td colspan="7" class="text-secondary py-4">Loading directory...</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel: Site Settings -->
+                        <div class="tab-pane fade" id="admin-panel-settings" role="tabpanel">
+                            <div class="royal-card">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="royal-font text-warning m-0"><i class="bi bi-gear-fill me-2"></i>Site Settings</h4>
+                                    <button class="btn btn-gold" onclick="saveAllSettings()"><i class="bi bi-save me-1"></i> Save All Changes</button>
+                                </div>
+                                <div id="settings-alert"></div>
+
+                                <!-- Contact Information -->
+                                <h6 class="text-warning royal-font border-bottom border-warning pb-2 mb-3"><i class="bi bi-telephone me-2"></i>Contact Information</h6>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-4">
+                                        <label class="form-label text-warning small royal-font">Phone Number</label>
+                                        <input type="text" class="form-control form-royal-control" id="setting-contact_phone" placeholder="+91 98765 43210">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label text-warning small royal-font">Email Address</label>
+                                        <input type="email" class="form-control form-royal-control" id="setting-contact_email" placeholder="info@mithilaroyalpaan.com">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label text-warning small royal-font">Office Address</label>
+                                        <input type="text" class="form-control form-royal-control" id="setting-contact_address" placeholder="Madhubani, Bihar">
+                                    </div>
+                                </div>
+
+                                <!-- Hero Section -->
+                                <h6 class="text-warning royal-font border-bottom border-warning pb-2 mb-3"><i class="bi bi-house me-2"></i>Homepage Hero Section</h6>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label text-warning small royal-font">Hero Title</label>
+                                        <input type="text" class="form-control form-royal-control" id="setting-home_hero_title">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-warning small royal-font">Hero Subtitle</label>
+                                        <input type="text" class="form-control form-royal-control" id="setting-home_hero_subtitle">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-warning small royal-font">Primary Button Text</label>
+                                        <input type="text" class="form-control form-royal-control" id="setting-home_hero_cta1">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-warning small royal-font">Secondary Button Text</label>
+                                        <input type="text" class="form-control form-royal-control" id="setting-home_hero_cta2">
+                                    </div>
+                                </div>
+
+                                <!-- Footer / About -->
+                                <h6 class="text-warning royal-font border-bottom border-warning pb-2 mb-3"><i class="bi bi-layout-text-sidebar me-2"></i>Footer &amp; About Text</h6>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label text-warning small royal-font">Site Name</label>
+                                        <input type="text" class="form-control form-royal-control" id="setting-site_name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-warning small royal-font">Site Tagline</label>
+                                        <input type="text" class="form-control form-royal-control" id="setting-site_tagline">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label text-warning small royal-font">Footer Description</label>
+                                        <textarea class="form-control form-royal-control" id="setting-footer_text" rows="2"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Social Media -->
+                                <h6 class="text-warning royal-font border-bottom border-warning pb-2 mb-3"><i class="bi bi-share me-2"></i>Social Media Links</h6>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-4">
+                                        <label class="form-label text-warning small royal-font"><i class="bi bi-facebook me-1"></i>Facebook URL</label>
+                                        <input type="url" class="form-control form-royal-control" id="setting-contact_facebook">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label text-warning small royal-font"><i class="bi bi-instagram me-1"></i>Instagram URL</label>
+                                        <input type="url" class="form-control form-royal-control" id="setting-contact_instagram">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label text-warning small royal-font"><i class="bi bi-whatsapp me-1"></i>WhatsApp Number</label>
+                                        <input type="text" class="form-control form-royal-control" id="setting-contact_whatsapp">
+                                    </div>
+                                </div>
+
+                                <h6 class="text-warning royal-font border-bottom border-warning pb-2 mb-3 mt-4"><i class="bi bi-envelope-open me-2"></i>Contact Us Page Details</h6>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label text-warning small royal-font">Contact Hero Title</label>
+                                        <input type="text" class="form-control form-royal-control" id="setting-contact_hero_title">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-warning small royal-font">Contact Hero Subtitle</label>
+                                        <input type="text" class="form-control form-royal-control" id="setting-contact_hero_subtitle">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label text-warning small royal-font">Farm Address</label>
+                                        <textarea class="form-control form-royal-control" id="setting-contact_farm_address" rows="2"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="text-end">
+                                    <button class="btn btn-gold btn-lg" onclick="saveAllSettings()"><i class="bi bi-save me-2"></i>Save All Settings</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel: AI Chatbot Management -->
+                        <div class="tab-pane fade" id="admin-panel-chatbot" role="tabpanel">
+                            <!-- Analytics Cards -->
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-2">
+                                    <div class="royal-card kpi-card p-3 text-center">
+                                        <small class="text-secondary text-uppercase royal-font d-block">Total Chats</small>
+                                        <h3 class="text-warning font-monospace mt-1 mb-0" id="stat-chat-total">0</h3>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="royal-card kpi-card p-3 text-center">
+                                        <small class="text-secondary text-uppercase royal-font d-block">AI Leads</small>
+                                        <h3 class="text-warning font-monospace mt-1 mb-0" id="stat-chat-leads">0</h3>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="royal-card kpi-card p-3 text-center">
+                                        <small class="text-secondary text-uppercase royal-font d-block">New</small>
+                                        <h3 class="text-success font-monospace mt-1 mb-0" id="stat-chat-new">0</h3>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="royal-card kpi-card p-3 text-center">
+                                        <small class="text-secondary text-uppercase royal-font d-block">Contacted</small>
+                                        <h3 class="text-info font-monospace mt-1 mb-0" id="stat-chat-contacted">0</h3>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="royal-card kpi-card p-3 text-center">
+                                        <small class="text-secondary text-uppercase royal-font d-block">Converted</small>
+                                        <h3 class="text-warning font-monospace mt-1 mb-0" id="stat-chat-converted">0</h3>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="royal-card kpi-card p-3 text-center">
+                                        <small class="text-secondary text-uppercase royal-font d-block">Conv. Rate</small>
+                                        <h3 class="text-warning font-monospace mt-1 mb-0" id="stat-chat-rate">0%</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Sub-tabs -->
+                            <ul class="nav nav-tabs mb-3" style="border-color: rgba(201,162,39,0.3);">
+                                <li class="nav-item">
+                                    <button class="nav-link active text-warning" data-bs-toggle="tab" data-bs-target="#chatbot-convs-pane">💬 Conversations</button>
+                                </li>
+                                <li class="nav-item">
+                                    <button class="nav-link text-warning" data-bs-toggle="tab" data-bs-target="#chatbot-leads-pane">🎯 AI Leads</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <!-- Conversations Pane -->
+                                <div class="tab-pane fade show active" id="chatbot-convs-pane">
+                                    <div class="royal-card">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h5 class="royal-font text-warning m-0">All Chat Conversations</h5>
+                                            <div class="input-group" style="max-width:260px;">
+                                                <span class="input-group-text form-royal-control border-end-0"><i class="bi bi-search text-warning"></i></span>
+                                                <input type="text" id="chatbot-conv-search" class="form-control form-royal-control border-start-0" placeholder="Search by name/session...">
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-royal align-middle text-center">
+                                                <thead><tr><th>ID</th><th>Visitor</th><th>Phone</th><th>Messages</th><th>Lead?</th><th>Status</th><th>Started</th><th>Actions</th></tr></thead>
+                                                <tbody id="chatbot-convs-table"><tr><td colspan="8" class="text-secondary py-3">Loading conversations...</td></tr></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Leads Pane -->
+                                <div class="tab-pane fade" id="chatbot-leads-pane">
+                                    <div class="royal-card">
+                                        <h5 class="royal-font text-warning mb-3">AI-Captured Leads</h5>
+                                        <div class="table-responsive">
+                                            <table class="table table-royal align-middle">
+                                                <thead><tr><th>ID</th><th>Name</th><th>Mobile</th><th>WhatsApp</th><th>Email</th><th>City</th><th>Requirement</th><th>Status</th><th>Assigned</th><th>Date</th><th>WA</th></tr></thead>
+                                                <tbody id="chatbot-leads-table"><tr><td colspan="11" class="text-secondary py-3">Loading leads...</td></tr></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Messages View Modal -->
+    <div class="modal fade" id="chatMsgModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content royal-card" style="background: var(--bg-secondary); border-color: var(--gold-primary);">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title royal-font text-warning">💬 Conversation History</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="chat-msg-modal-body" style="max-height:500px; overflow-y:auto;">
+                    <div class="text-center text-secondary py-4">Loading messages...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals for CRUD operations -->
+    <!-- 1. Add Product Modal -->
+    <div class="modal fade" id="productCrudModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content royal-card" style="background-color: var(--bg-secondary); border-color: var(--gold-primary);">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title royal-font text-warning" id="productCrudTitle">Add Product Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="product-crud-form">
+                    <div class="modal-body">
+                        <input type="hidden" id="crud-prod-id">
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Product Name</label>
+                            <input type="text" class="form-control form-royal-control" id="crud-prod-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Category</label>
+                            <select class="form-select form-royal-control" id="crud-prod-cat" required>
+                                <option value="Fresh Leaves">Fresh Leaves</option>
+                                <option value="Sweet Paan">Sweet Paan</option>
+                                <option value="Dry Fruit Paan">Dry Fruit Paan</option>
+                                <option value="Chocolate Paan">Chocolate Paan</option>
+                                <option value="Fire Paan">Fire Paan</option>
+                                <option value="Gift Packs">Gift Packs</option>
+                            </select>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-warning small royal-font">Price (INR)</label>
+                                <input type="number" step="0.01" class="form-control form-royal-control" id="crud-prod-price" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-warning small royal-font">Availability</label>
+                                <select class="form-select form-royal-control" id="crud-prod-avail" required>
+                                    <option value="true">Available</option>
+                                    <option value="false">Unavailable</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Image URL (Unsplash or direct URL)</label>
+                            <input type="text" class="form-control form-royal-control" id="crud-prod-img" placeholder="https://images.unsplash.com/...">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Description</label>
+                            <textarea class="form-control form-royal-control" id="crud-prod-desc" rows="3" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-outline-gold" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-gold">Save Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Publish Blog Modal -->
+    <div class="modal fade" id="blogCrudModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content royal-card" style="background-color: var(--bg-secondary); border-color: var(--gold-primary);">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title royal-font text-warning" id="blogCrudTitle">Publish Blog Article</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="blog-crud-form">
+                    <div class="modal-body">
+                        <input type="hidden" id="crud-blog-id">
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Blog Title</label>
+                            <input type="text" class="form-control form-royal-control" id="crud-blog-title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Author Name</label>
+                            <input type="text" class="form-control form-royal-control" id="crud-blog-author" value="Mithila Editorial" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Banner Image URL</label>
+                            <input type="text" class="form-control form-royal-control" id="crud-blog-img" placeholder="https://images.unsplash.com/...">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Content Details</label>
+                            <textarea class="form-control form-royal-control" id="crud-blog-content" rows="6" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-outline-gold" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-gold">Publish Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Add Gallery Modal -->
+    <div class="modal fade" id="galleryCrudModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content royal-card" style="background-color: var(--bg-secondary); border-color: var(--gold-primary);">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title royal-font text-warning">Add Gallery Item</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="gallery-crud-form">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Image Title</label>
+                            <input type="text" class="form-control form-royal-control" id="crud-gal-title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Category</label>
+                            <select class="form-select form-royal-control" id="crud-gal-cat" required>
+                                <option value="Wedding">Wedding</option>
+                                <option value="Farming">Farming</option>
+                                <option value="Events">Events</option>
+                                <option value="Products">Products</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Image Link URL</label>
+                            <input type="text" class="form-control form-royal-control" id="crud-gal-url" placeholder="https://images.unsplash.com/..." required>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-outline-gold" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-gold">Add Media</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Add Testimonial Modal -->
+    <div class="modal fade" id="testimonialCrudModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content royal-card" style="background-color: var(--bg-secondary); border-color: var(--gold-primary);">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title royal-font text-warning">Add Patron Testimonial</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="testimonial-crud-form">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Author Name</label>
+                            <input type="text" class="form-control form-royal-control" id="crud-test-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Author Role / Location</label>
+                            <input type="text" class="form-control form-royal-control" id="crud-test-role" placeholder="e.g. Groom's Father, Delhi" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Rating Scale</label>
+                            <select class="form-select form-royal-control" id="crud-test-rating" required>
+                                <option value="5">5 Stars</option>
+                                <option value="4">4 Stars</option>
+                                <option value="3">3 Stars</option>
+                                <option value="2">2 Stars</option>
+                                <option value="1">1 Star</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Review Comment</label>
+                            <textarea class="form-control form-royal-control" id="crud-test-text" rows="3" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-outline-gold" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-gold">Publish Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Add/Edit FAQ Modal -->
+    <div class="modal fade" id="faqCrudModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content royal-card" style="background-color: var(--bg-secondary); border-color: var(--gold-primary);">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title royal-font text-warning" id="faqCrudTitle">Add FAQ Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="faq-crud-form">
+                    <div class="modal-body">
+                        <input type="hidden" id="crud-faq-id">
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Question</label>
+                            <input type="text" class="form-control form-royal-control" id="crud-faq-question" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Answer</label>
+                            <textarea class="form-control form-royal-control" id="crud-faq-answer" rows="4" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-warning small royal-font">Display Order</label>
+                            <input type="number" class="form-control form-royal-control" id="crud-faq-order" value="0" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-outline-gold" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-gold">Save FAQ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/main.js"></script>
+    
+    <!-- Admin Dashboard Operations Script -->
+    <script src="/js/admin.js"></script>
+
+    <!-- Site Settings Logic -->
+    <script>
+    // Load site settings into form fields
+    async function loadSiteSettings() {
+        try {
+            const settings = await API.get('/settings');
+            // settings is a Map object: { contact_phone: "...", hero_title: "..." }
+            Object.entries(settings).forEach(([key, value]) => {
+                const el = document.getElementById('setting-' + key);
+                if (el) el.value = value || '';
+            });
+        } catch (e) {
+            console.warn('Could not load site settings:', e.message);
+        }
+    }
+
+    // Save all settings in one batch request
+    async function saveAllSettings() {
+        const keys = [
+            'contact_phone','contact_email','contact_address',
+            'home_hero_title','home_hero_subtitle','home_hero_cta1','home_hero_cta2',
+            'site_name','site_tagline','footer_text',
+            'contact_facebook','contact_instagram','contact_whatsapp',
+            'contact_farm_address', 'contact_office_address', 'contact_phones', 'contact_emails',
+            'contact_hero_title', 'contact_hero_subtitle'
+        ];
+        const alertEl = document.getElementById('settings-alert');
+        const payload = {};
+        keys.forEach(key => {
+            const el = document.getElementById('setting-' + key);
+            if (el) payload[key] = el.value;
+        });
+        try {
+            await API.post('/settings/batch', payload);
+            alertEl.innerHTML = '<div class="alert alert-success alert-dismissible"><i class="bi bi-check-circle me-2"></i>All settings saved successfully! Changes will appear on the website immediately. <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';
+            // Scroll to top of settings panel
+            alertEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (e) {
+            alertEl.innerHTML = '<div class="alert alert-danger"><i class="bi bi-exclamation-triangle me-2"></i>Save failed: ' + e.message + '</div>';
+        }
+    }
+
+    // Load settings when tab is clicked
+    document.getElementById('tab-admin-settings-btn').addEventListener('click', loadSiteSettings);
+
+    // ===================== AI CHATBOT ADMIN =====================
+    let allChatConvs = [];
+    let allChatLeads = [];
+    let chatMsgModalBs = null;
+
+    async function loadChatbotPanel() {
+        try {
+            // Load analytics
+            const stats = await API.get('/chat/admin/analytics');
+            document.getElementById('stat-chat-total').textContent = stats.totalConversations || 0;
+            document.getElementById('stat-chat-leads').textContent = stats.totalLeads || 0;
+            document.getElementById('stat-chat-new').textContent = stats.newLeads || 0;
+            document.getElementById('stat-chat-contacted').textContent = stats.contactedLeads || 0;
+            document.getElementById('stat-chat-converted').textContent = stats.convertedLeads || 0;
+            document.getElementById('stat-chat-rate').textContent = stats.conversionRate || '0%';
+
+            // Load conversations
+            allChatConvs = await API.get('/chat/admin/conversations');
+            renderChatConvs(allChatConvs);
+
+            // Load leads
+            allChatLeads = await API.get('/chat/admin/leads');
+            renderChatLeads(allChatLeads);
+        } catch(e) {
+            console.error('Chatbot admin error:', e);
+        }
+    }
+
+    function renderChatConvs(list) {
+        const tbody = document.getElementById('chatbot-convs-table');
+        if (!list || list.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="8" class="text-secondary py-3">No conversations yet. The chatbot will appear on all pages.</td></tr>';
+            return;
+        }
+        tbody.innerHTML = list.map(c => `
+            <tr>
+                <td class="font-monospace text-warning">#${c.id}</td>
+                <td class="text-white">${c.visitorName || '<span class=\'text-secondary\'>Anonymous</span>'}<br><small class="text-secondary" style="font-size:0.65rem;">${c.sessionId.substring(0,16)}...</small></td>
+                <td>${c.visitorPhone || '<span class="text-secondary">—</span>'}</td>
+                <td><span class="badge bg-secondary">${c.messageCount || 0}</span></td>
+                <td>${c.leadGenerated ? '<span class="badge bg-success">✅ Yes</span>' : '<span class="badge bg-secondary">No</span>'}</td>
+                <td><span class="badge bg-${c.status === 'ACTIVE' ? 'success' : 'secondary'}">${c.status}</span></td>
+                <td class="text-secondary small">${c.createdAt ? new Date(c.createdAt).toLocaleDateString('en-IN') : '—'}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-gold" onclick="viewChatMessages(${c.id})"><i class="bi bi-eye"></i> View</button>
+                    <button class="btn btn-sm btn-outline-danger ms-1" onclick="deleteChatConv(${c.id})"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    function renderChatLeads(list) {
+        const tbody = document.getElementById('chatbot-leads-table');
+        if (!list || list.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="11" class="text-secondary py-3">No leads captured yet. Leads are auto-collected when customers show buying intent.</td></tr>';
+            return;
+        }
+        const statusColors = { NEW: 'success', CONTACTED: 'info', CONVERTED: 'warning', LOST: 'danger' };
+        tbody.innerHTML = list.map(l => `
+            <tr>
+                <td class="font-monospace text-warning">#${l.id}</td>
+                <td class="text-white fw-bold">${l.fullName || '—'}</td>
+                <td>${l.mobile ? `<a href="tel:${l.mobile}" class="text-warning">${l.mobile}</a>` : '—'}</td>
+                <td>${l.whatsapp ? `<a href="https://wa.me/91${l.whatsapp}" target="_blank" class="text-success">${l.whatsapp}</a>` : '—'}</td>
+                <td class="text-secondary small">${l.email || '—'}</td>
+                <td>${l.city || '—'}</td>
+                <td class="text-secondary small" style="max-width:160px; word-wrap:break-word;">${l.requirement || '—'}</td>
+                <td>
+                    <select class="form-select form-royal-control py-1 px-2" style="font-size:0.75rem; width:auto;" onchange="updateLeadStatus(${l.id}, this.value)">
+                        ${['NEW','CONTACTED','CONVERTED','LOST'].map(s => `<option value="${s}" ${l.status===s?'selected':''}>${s}</option>`).join('')}
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control form-royal-control py-1" style="font-size:0.75rem; min-width:100px;" value="${l.assignedTo || ''}" placeholder="Assign..." onblur="assignChatLead(${l.id}, this.value)">
+                </td>
+                <td class="text-secondary small">${l.createdAt ? new Date(l.createdAt).toLocaleDateString('en-IN') : '—'}</td>
+                <td>
+                    ${l.mobile ? `<a href="https://wa.me/91${l.mobile}" target="_blank" class="btn btn-sm btn-success"><i class="bi bi-whatsapp"></i></a>` : ''}
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    async function viewChatMessages(convId) {
+        const body = document.getElementById('chat-msg-modal-body');
+        body.innerHTML = '<div class="text-center text-secondary py-4">Loading...</div>';
+        if (!chatMsgModalBs) {
+            chatMsgModalBs = new bootstrap.Modal(document.getElementById('chatMsgModal'));
+        }
+        chatMsgModalBs.show();
+        try {
+            const msgs = await API.get('/chat/admin/conversations/' + convId + '/messages');
+            if (!msgs || msgs.length === 0) {
+                body.innerHTML = '<div class="text-center text-secondary py-4">No messages found.</div>';
+                return;
+            }
+            body.innerHTML = msgs.map(m => `
+                <div class="d-flex ${m.role === 'USER' ? 'justify-content-end' : 'justify-content-start'} mb-3">
+                    <div style="max-width:78%;">
+                        <div class="p-2 px-3 rounded-3" style="background:${m.role === 'USER' ? 'rgba(201,162,39,0.2)' : 'rgba(255,255,255,0.06)'}; border:1px solid ${m.role === 'USER' ? 'rgba(201,162,39,0.4)' : 'rgba(255,255,255,0.08)'}; color:${m.role === 'USER' ? '#f0d060' : '#e0e0e0'}; font-size:0.85rem;">${m.content.replace(/\n/g,'<br>')}</div>
+                        <small class="text-secondary d-block mt-1 ${m.role === 'USER' ? 'text-end' : ''}" style="font-size:0.65rem;">${m.role} · ${m.createdAt ? new Date(m.createdAt).toLocaleTimeString('en-IN') : ''}</small>
+                    </div>
+                </div>
+            `).join('');
+        } catch(e) {
+            body.innerHTML = '<div class="alert alert-danger">Failed to load messages.</div>';
+        }
+    }
+
+    async function deleteChatConv(id) {
+        if (!confirm('Delete this conversation? This cannot be undone.')) return;
+        try {
+            await fetch('/api/v1/chat/admin/conversations/' + id, { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + Auth.getToken() } });
+            allChatConvs = allChatConvs.filter(c => c.id !== id);
+            renderChatConvs(allChatConvs);
+        } catch(e) {
+            alert('Delete failed: ' + e.message);
+        }
+    }
+
+    async function updateLeadStatus(id, status) {
+        try {
+            await fetch('/api/v1/chat/admin/leads/' + id + '/status', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Auth.getToken() },
+                body: JSON.stringify({ status })
+            });
+        } catch(e) { console.error(e); }
+    }
+
+    async function assignChatLead(id, assignedTo) {
+        try {
+            await fetch('/api/v1/chat/admin/leads/' + id + '/assign', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + Auth.getToken() },
+                body: JSON.stringify({ assignedTo })
+            });
+        } catch(e) { console.error(e); }
+    }
+
+    // Search conversations
+    document.getElementById('chatbot-conv-search') && document.getElementById('chatbot-conv-search').addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase();
+        const filtered = allChatConvs.filter(c =>
+            (c.visitorName || '').toLowerCase().includes(q) ||
+            (c.sessionId || '').toLowerCase().includes(q) ||
+            (c.visitorPhone || '').toLowerCase().includes(q)
+        );
+        renderChatConvs(filtered);
+    });
+
+    // Load chatbot panel when tab is clicked
+    document.getElementById('tab-admin-chatbot-btn').addEventListener('click', loadChatbotPanel);
+    </script>
+</body>
+</html>
