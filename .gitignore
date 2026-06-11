@@ -5,3 +5,10 @@
 .vscode/
 .idea/
 *.log
+
+# =============================================
+# SECRET FILES — never commit these to Git!
+# =============================================
+.env
+# Uncomment the line below if you put real passwords in application.properties
+# **/application.properties
