@@ -12,3 +12,17 @@
 .env
 # Uncomment the line below if you put real passwords in application.properties
 # **/application.properties
+
+# =============================================
+# Maven Wrapper — MUST be committed to Git
+# DO NOT ignore mvnw, mvnw.cmd, or .mvn/
+# =============================================
+!backend/mvnw
+!backend/mvnw.cmd
+!backend/.mvn/
+!backend/.mvn/wrapper/
+!backend/.mvn/wrapper/maven-wrapper.properties
+
+# Ignore the wrapper JAR binary if using downloadOnly mode
+# (The wrapper will auto-download it on first run)
+backend/.mvn/wrapper/maven-wrapper.jar
