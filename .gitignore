@@ -23,6 +23,5 @@
 !backend/.mvn/wrapper/
 !backend/.mvn/wrapper/maven-wrapper.properties
 
-# Ignore the wrapper JAR binary if using downloadOnly mode
-# (The wrapper will auto-download it on first run)
-backend/.mvn/wrapper/maven-wrapper.jar
+# Commit the wrapper JAR so Render/Railway can build without network access
+!backend/.mvn/wrapper/maven-wrapper.jar

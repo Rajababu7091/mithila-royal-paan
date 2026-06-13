@@ -1,22 +1,29 @@
 # ============================================================
 # MITHILA ROYAL PAAN - Production Dockerfile
-# Java 17 (Eclipse Temurin) | Spring Boot 3.2.5 | Maven
+# Java 17 (Eclipse Temurin) | Spring Boot 3.2.5 | Maven 3.9.6
 # Compatible with: Render, Railway
 # ============================================================
 
 # ── Stage 1: Build ──────────────────────────────────────────
 FROM eclipse-temurin:17-jdk-alpine AS builder
 
+# Install required tools
+RUN apk add --no-cache curl bash
+
 WORKDIR /app
 
 # Copy Maven wrapper and project descriptor first (layer cache)
-COPY mvnw ./
 COPY .mvn ./.mvn
+COPY mvnw ./
+COPY mvnw.cmd ./
 COPY pom.xml ./
 
-# Make mvnw executable and download all dependencies (cached layer)
+# Ensure mvnw is executable and has Unix line endings (fix Windows CRLF)
 RUN chmod +x mvnw \
-    && ./mvnw dependency:go-offline -B
+    && sed -i 's/\r$//' mvnw
+
+# Download all dependencies (cached layer — only reruns if pom.xml changes)
+RUN ./mvnw dependency:go-offline -B
 
 # Copy source code
 COPY src ./src
